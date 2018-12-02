@@ -2,10 +2,9 @@
 // where your node app starts
 
 // init project
-var http = require('http');
 var express = require('express');
 var app = express();
-console.log(app.port);
+
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
 // so that your API is remotely testable by FCC 
 var cors = require('cors');
@@ -26,7 +25,6 @@ app.get("/api/hello", function (req, res) {
 });
 
 app.get("/api/whoami", (req, res) =>{
-  console.log(req.headers.host);
   res.json({"ipaddress": req.headers.host,
             "language": req.headers["accept-language"],
             "software": req.headers["user-agent"]});
@@ -34,7 +32,6 @@ app.get("/api/whoami", (req, res) =>{
 
 
 // listen for requests :)
-process.env.PORT = '3000';
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
